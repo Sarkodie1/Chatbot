@@ -9,20 +9,14 @@ This document provides detailed instructions for integrating the chatbot API wit
 **Base URL:**
 http://chatbot-env.eba-umqwe8hv.eu-north-1.elasticbeanstalk.com
 
-makefile
-Copy code
 
 **Endpoint:**
 /chat
 
-makefile
-Copy code
 
 **Method:**
 POST
 
-less
-Copy code
 
 ## Request Details
 
@@ -40,47 +34,47 @@ The body of the POST request should be a JSON object with a single key `message`
 {
   "message": "Hello"
 }
+```
 Response Details
 The API will respond with a JSON object containing a single key response which will hold the chatbot's reply as a string.
 
 Example Response Body
-json
-Copy code
+```json
 {
   "response": "Hi! How can I help you today?"
 }
-Error Handling
-Common Errors
-400 Bad Request: This error occurs if the message field is missing or empty.
+```
 
-Response Body:
-json
-Copy code
+## Error Handling
+Common Errors
+1. 400 Bad Request: This error occurs if the message field is missing or empty.
+```json
 {
   "error": "No message provided"
 }
-500 Internal Server Error: This error occurs if there is an issue processing the request.
+```
+2.500 Internal Server Error: This error occurs if there is an issue processing the request.
 
-Response Body:
-json
-Copy code
+Response Body
+```json
 {
   "error": "An error occurred while processing the request"
 }
-Integration Steps
-Step 1: Install Axios
-To make HTTP requests from the React Native app, you can use the Axios library. Install it using npm or yarn.
+```
 
-sh
-Copy code
+## Integration Steps
+**Step 1: Install Axios**
+To make HTTP requests from the React Native app, you can use the Axios library. Install it using npm or yarn.
+```sh
 npm install axios
 # or
 yarn add axios
-Step 2: Create an API Service
+```
+
+**Step 2: Create an API Service**
 Create a file named ChatbotService.js to handle the API interactions.
 
-javascript
-Copy code
+```javascript
 import axios from 'axios';
 
 const BASE_URL = 'http://chatbot-env.eba-umqwe8hv.eu-north-1.elasticbeanstalk.com';
@@ -102,11 +96,11 @@ const ChatbotService = {
 };
 
 export default ChatbotService;
-Step 3: Use the API in a Component
-In your React Native component, import and use the ChatbotService to send messages and handle responses.
+```
 
-javascript
-Copy code
+**Step 3: Use the API in a Component**
+In your React Native component, import and use the ChatbotService to send messages and handle responses.
+```javascript
 import React, { useState } from 'react';
 import { View, Text, TextInput, Button } from 'react-native';
 import ChatbotService from './ChatbotService';
@@ -139,11 +133,12 @@ const ChatScreen = () => {
 };
 
 export default ChatScreen;
-Step 4: Handling Edge Cases
-Ensure that the application handles edge cases, such as empty input and network errors, gracefully.
+```
 
-javascript
-Copy code
+
+**Step 4: Handling Edge Cases**
+Ensure that the application handles edge cases, such as empty input and network errors, gracefully.
+```javascript
 const handleSend = async () => {
   if (!message.trim()) {
     setResponse('Please enter a message.');
@@ -157,11 +152,12 @@ const handleSend = async () => {
     setResponse('An error occurred while communicating with the chatbot.');
   }
 };
-Full Example
+```
+
+## Full Example
 Below is a complete example of a simple chat screen component in React Native using the chatbot API.
 
-javascript
-Copy code
+```javascript
 import React, { useState } from 'react';
 import { View, Text, TextInput, Button, StyleSheet } from 'react-native';
 import ChatbotService from './ChatbotService';
@@ -225,5 +221,7 @@ const styles = StyleSheet.create({
 });
 
 export default ChatScreen;
-Conclusion
-This documentation provides all the necessary details to integrate the chatbot API with a React Native application. By following these steps, the front-end developer should be able to send messages to the chatbot and display its responses within the app. If there are any questions or additional requirements, please feel free to ask for further assistance.
+```
+
+
+
